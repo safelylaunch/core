@@ -16,7 +16,6 @@ class Container < Dry::System::Container
 
   #  Core
   register_folder! 'core/repositories'
-  register_folder! 'core/libs'
 
   configure do |config|
     config.env = Hanami.env

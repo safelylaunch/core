@@ -27,11 +27,6 @@ gem 'dry-monads', '~> 1.1.0'
 # templates
 gem 'slim'
 
-# auth
-gem 'omniauth'
-gem 'omniauth-github', github: 'intridea/omniauth-github'
-gem 'web_bouncer', github: 'davydovanton/web_bouncer'
-
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
