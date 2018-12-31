@@ -8,6 +8,8 @@ Hanami::Model.migration do
     create_table :toggles do
       primary_key :id
 
+      foreign_key :environment_id, :environments, on_delete: :cascade, null: false
+
       column :key,  String, null: false
 
       column :name, String, null: false
