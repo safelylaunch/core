@@ -12,4 +12,13 @@ module Types
   LoggerLevel = Symbol.constructor(proc { |value| value.to_s.downcase.to_sym })
                       .default(:info)
                       .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
+
+  # Toggle and envs
+  ToggleStatuses = String.constructor(proc { |value| value.to_s.downcase })
+                         .default('disable')
+                         .enum('enable', 'disable')
+
+  ToggleTypes = String.constructor(proc { |value| value.to_s.downcase })
+                      .default('boolean')
+                      .enum('boolean')
 end
