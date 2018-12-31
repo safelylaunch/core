@@ -4,8 +4,8 @@ Hanami::Model.migration do
   change do
     extension :pg_enum
 
-    create_enum(:toggle_statuses, %w[enable disable])
     create_enum(:toggle_types, %w[boolean])
+    create_enum(:toggle_statuses, %w[enable disable])
 
     create_table :toggles do
       primary_key :id
