@@ -6,8 +6,10 @@ require 'hanami/model'
 require_relative '../system/import'
 require_relative '../apps/web/application'
 require_relative './initializers/request_id'
+require_relative '../apps/api/application'
 
 Hanami.configure do
+  mount Api::Application, at: '/api'
   middleware.use RequestId
   mount Web::Application, at: '/'
 
