@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ErrorObject
   attr_reader :key, :payload
 
@@ -6,7 +8,7 @@ class ErrorObject
     @payload = payload
   end
 
-  def ==(other_token)
-    (self.key == other_token.key) && (self.payload == other_token.payload)
+  def ==(other)
+    (key == other.key) && (payload == other.payload)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Toggles
   module Operations
     class Check < Libs::Operation
@@ -10,7 +12,7 @@ module Toggles
         Success(key: key, enable: toggle.enable?)
       end
 
-    private
+      private
 
       def find(key, environment_id)
         toggle = toggle_repo.find_by_key_for_env(key, environment_id)

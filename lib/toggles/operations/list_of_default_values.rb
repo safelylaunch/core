@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Toggles
   module Operations
     class ListOfDefaultValues < Libs::Operation
@@ -5,8 +7,7 @@ module Toggles
 
       include Import[]
 
-      def call(payload)
-      end
+      def call(payload); end
     end
   end
 end

@@ -8,7 +8,7 @@ module Api
           include Surrealist
 
           ERRORS = {
-            not_found: 'Toggle with key "%{key}" not found',
+            not_found: 'Toggle with key "%{key}" not found'
           }.freeze
 
           json_schema do
