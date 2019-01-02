@@ -18,6 +18,9 @@ gem 'pg'
 gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 
+# presenters
+gem 'surrealist'
+
 # Monitoring and logging
 gem 'semantic_logger'
 

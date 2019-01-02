@@ -17,6 +17,9 @@ class Container < Dry::System::Container
   #  Core
   register_folder! 'core/repositories'
 
+  #  toggles
+  register_folder! 'toggles/operations'
+
   configure do |config|
     config.env = Hanami.env
   end
