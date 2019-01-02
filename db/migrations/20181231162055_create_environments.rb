@@ -7,7 +7,7 @@ Hanami::Model.migration do
 
       column :name, String, null: false
 
-      column :api_key, String, null: false
+      column :api_key, String, null: false, unique: true
       column :color, String, null: false
 
       column :created_at, DateTime, null: false
