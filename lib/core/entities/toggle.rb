@@ -18,6 +18,7 @@ class Toggle < Hanami::Entity
     attribute :description, Types::String
     attribute :type, ::Types::ToggleTypes
     attribute :status, ::Types::ToggleStatuses
+    attribute :default_status, ::Types::ToggleStatuses
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time
