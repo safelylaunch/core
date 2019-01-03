@@ -21,6 +21,13 @@ gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 # presenters
 gem 'surrealist'
 
+# templates
+gem 'hanami-bootstrap'
+gem 'jquery-hanami'
+gem 'relative_time'
+gem 'sass'
+gem 'slim'
+
 # Monitoring and logging
 gem 'semantic_logger'
 
