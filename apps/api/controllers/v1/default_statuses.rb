@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module Controllers
     module V1
@@ -16,7 +18,7 @@ module Api
           end
         end
 
-      private
+        private
 
         def render_success(payload)
           Presenters::V1::DefaultStatuses::Success.new(payload).surrealize

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Api::Controllers::V1::DefaultStatuses, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:params) { { environment_id: 1 } }

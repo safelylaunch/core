@@ -54,7 +54,7 @@ RSpec.describe ToggleRepository, type: :repository do
     context 'when method take other type as integer' do
       subject { repo.all_for('invalid') }
 
-      it { expect{ subject }.to raise_error(Sequel::DatabaseError) }
+      it { expect { subject }.to raise_error(Sequel::DatabaseError) }
     end
   end
 end

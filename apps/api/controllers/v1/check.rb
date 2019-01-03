@@ -20,7 +20,7 @@ module Api
           end
         end
 
-      private
+        private
 
         def render_success(payload)
           Presenters::V1::Check::Success.new(payload).surrealize
