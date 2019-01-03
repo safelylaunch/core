@@ -12,16 +12,20 @@ Hanami::Model.migration do
 
       foreign_key :environment_id, :environments, on_delete: :cascade, null: false
 
+      # trigger on not space chars
       column :key,  String, null: false
 
       column :name, String, null: false
       column :description, String, text: true
 
       column :type, 'toggle_types', null: false, default: 'boolean'
-      column :status, 'toggle_statuses', null: false, default: 'enable'
+      column :status, 'toggle_statuses', null: false, default: 'disable'
+      column :default_status, 'toggle_statuses', null: false, default: 'disable'
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
+
+      index %i[key environment_id], unique: true
     end
   end
 end
