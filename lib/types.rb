@@ -21,4 +21,12 @@ module Types
   ToggleTypes = String.constructor(proc { |value| value.to_s.downcase })
                       .default('boolean')
                       .enum('boolean')
+
+  AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
+                      .default('user')
+                      .enum('user')
+
+  AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
+                      .default('google')
+                      .enum('google')
 end

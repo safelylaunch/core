@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Environment
+class Environment < Hanami::Entity
 end
 
 class Toggle < Hanami::Entity
