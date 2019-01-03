@@ -7,6 +7,13 @@ module Api
         class Error
           include Surrealist
 
+          SERVER_ERROR = :server_error
+
+          ERRORS = {
+            server_error: 'Server Error',
+            auth_failure: 'Invalid token "%{token}"'
+          }.freeze
+
           json_schema do
             {
               error: {
@@ -19,10 +26,17 @@ module Api
 
           attr_reader :params, :type, :message
 
-          def initialize(params:)
-            @type = :server_error
-            @message = 'Server Error'
+          def initialize(error_type:, params:)
+            @type = error_type || SERVER_ERROR
+            params.delete(:environment_id)
             @params = params
+          end
+
+          private
+
+          # Get error message by error type
+          def message
+            format(ERRORS.fetch(type), **params)
           end
         end
       end

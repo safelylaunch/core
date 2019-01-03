@@ -6,15 +6,23 @@ module Api
       class DefaultStatuses
         include Api::Action
         include Dry::Monads::Result::Mixin
-        include Import[operation: 'toggles.operations.list_of_default_values']
+        include Import[
+          'environments.operations.authorizer',
+          operation: 'toggles.operations.list_of_default_values'
+        ]
 
         def call(params)
-          case result = operation.call(environment_id: params[:environment_id])
+          result = authorizer
+            .call(token: params[:token])
+            .bind { |auth_payload| operation.call(auth_payload) }
+
+          case result
           when Success
             self.body = render_success(toggles: result.value!)
           when Failure
-            payload = { environment_id: params[:environment_id] }
-            halt 400, render_failure(params: payload)
+            error_type = result.failure.respond_to?(:key) && result.failure.key
+
+            halt 400, render_failure(error_type: error_type, params: { token: params[:token] })
           end
         end
 
