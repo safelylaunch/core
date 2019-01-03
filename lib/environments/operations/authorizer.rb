@@ -11,7 +11,7 @@ module Environments
         if environment = env_repo.find_for_token(token)
           Success(environment_id: environment.id)
         else
-          Failure(ErrorObject.new(:auth_failure, token: 'tokenhere'))
+          Failure(ErrorObject.new(:auth_failure, token: token))
         end
       end
     end

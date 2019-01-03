@@ -20,6 +20,9 @@ class Container < Dry::System::Container
   #  toggles
   register_folder! 'toggles/operations'
 
+  #  environments
+  register_folder! 'environments/operations'
+
   configure do |config|
     config.env = Hanami.env
   end

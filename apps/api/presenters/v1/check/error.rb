@@ -8,7 +8,8 @@ module Api
           include Surrealist
 
           ERRORS = {
-            not_found: 'Toggle with key "%{key}" not found'
+            not_found: 'Toggle with key "%{key}" not found',
+            auth_failure: 'Invalid token "%{token}"'
           }.freeze
 
           json_schema do
@@ -28,6 +29,7 @@ module Api
           def initialize(key:, error_type:, params: {})
             @key = key
             @type = error_type
+            params.delete(:environment_id)
             @params = params
           end
 

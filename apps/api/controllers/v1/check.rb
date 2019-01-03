@@ -6,15 +6,23 @@ module Api
       class Check
         include Api::Action
         include Dry::Monads::Result::Mixin
-        include Import[operation: 'toggles.operations.check']
+        include Import[
+          'environments.operations.authorizer',
+          operation: 'toggles.operations.check'
+        ]
+
 
         def call(params) # rubocop:disable Metrics/AbcSize
-          case result = operation.call(key: params[:key], environment_id: params[:environment_id])
+          result = authorizer.call(token: params[:token]).bind do |auth_payload|
+            operation.call(key: params[:key], environment_id: auth_payload[:environment_id]) 
+          end
+
+          case result
           when Success
             self.body = render_success(result.value!)
           when Failure
             error = result.failure
-            payload = { key: params[:key], environment_id: params[:environment_id] }.merge!(error.payload)
+            payload = { key: params[:key], token: params[:token] }.merge!(error.payload)
 
             halt 400, render_failure(key: params[:key], error_type: error.key, params: payload)
           end
