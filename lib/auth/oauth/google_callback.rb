@@ -3,7 +3,7 @@
 module Auth
   module Oauth
     class GoogleCallback < WebBouncer::OauthCallback
-      def call(oauth_response)
+      def call(_oauth_response)
         # account = auth_identitie_repo.find_account(uid: oauth_response['uid'], type: 'github')
         #
         # unless account

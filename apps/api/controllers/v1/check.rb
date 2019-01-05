@@ -11,20 +11,18 @@ module Api
           operation: 'toggles.operations.check'
         ]
 
-
         def call(params) # rubocop:disable Metrics/AbcSize
           result = authorizer.call(token: params[:token]).bind do |auth_payload|
-            operation.call(key: params[:key], environment_id: auth_payload[:environment_id]) 
+            operation.call(key: params[:key], environment_id: auth_payload[:environment_id])
           end
 
           case result
           when Success
             self.body = render_success(result.value!)
           when Failure
-            error = result.failure
-            payload = { key: params[:key], token: params[:token] }.merge!(error.payload)
+            payload = { key: params[:key], token: params[:token] }.merge!(result.failure.payload)
 
-            halt 400, render_failure(key: params[:key], error_type: error.key, params: payload)
+            halt 400, render_failure(key: params[:key], error_type: result.failure.key, params: payload)
           end
         end
 

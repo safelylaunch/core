@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe AuthIdentityRepository, type: :repository do
   let(:repo) { described_class.new }
 

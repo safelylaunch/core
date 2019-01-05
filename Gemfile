@@ -38,9 +38,6 @@ gem 'dry-monads', '~> 1.1.0'
 gem 'omniauth-google-oauth2'
 gem 'web_bouncer', github: 'davydovanton/web_bouncer'
 
-# templates
-gem 'slim'
-
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading

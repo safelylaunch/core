@@ -8,11 +8,8 @@ module Environments
       include Import[env_repo: 'repositories.environment']
 
       def call(token:)
-        if environment = env_repo.find_for_token(token)
-          Success(environment_id: environment.id)
-        else
-          Failure(ErrorObject.new(:auth_failure, token: token))
-        end
+        environment = env_repo.find_for_token(token)
+        environment ? Success(environment_id: environment.id) : Failure(ErrorObject.new(:auth_failure, token: token))
       end
     end
   end

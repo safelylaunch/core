@@ -24,7 +24,7 @@ module Api
             }
           end
 
-          attr_reader :params, :type, :message
+          attr_reader :params, :type
 
           def initialize(error_type:, params:)
             @type = error_type || SERVER_ERROR

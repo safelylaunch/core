@@ -11,10 +11,10 @@ module Api
           operation: 'toggles.operations.list_of_default_values'
         ]
 
-        def call(params)
+        def call(params) # rubocop:disable Metrics/AbcSize
           result = authorizer
-            .call(token: params[:token])
-            .bind { |auth_payload| operation.call(auth_payload) }
+                   .call(token: params[:token])
+                   .bind { |auth_payload| operation.call(auth_payload) }
 
           case result
           when Success

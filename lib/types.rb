@@ -23,14 +23,14 @@ module Types
                       .enum('boolean')
 
   AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
-                      .default('user')
-                      .enum('user')
+                       .default('user')
+                       .enum('user')
 
   AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
-                      .default('google')
-                      .enum('google')
+                            .default('google')
+                            .enum('google')
 
   ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
-                      .default('member')
-                      .enum('admin', 'member')
+                             .default('member')
+                             .enum('admin', 'member')
 end
