@@ -4,6 +4,7 @@ Hanami::Model.migration do
   change do
     create_table :environments do
       primary_key :id
+      foreign_key :project_id, :projects, on_delete: :cascade, null: false
 
       column :name, String, null: false
 
@@ -12,6 +13,8 @@ Hanami::Model.migration do
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
+
+      index %i[name project_id], unique: true
     end
   end
 end
