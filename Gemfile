@@ -34,6 +34,10 @@ gem 'semantic_logger'
 # business logic section
 gem 'dry-monads', '~> 1.1.0'
 
+# auth
+gem 'omniauth-google-oauth2'
+gem 'web_bouncer', github: 'davydovanton/web_bouncer'
+
 # templates
 gem 'slim'
 
