@@ -16,7 +16,7 @@ class ProjectMember < Hanami::Entity
     attribute :account_id, Types::Int
     attribute :account, Types::Entity(Account)
 
-    attribute :role, ::Types::ProjectMemberRoles
+    attribute :role, Core::Types::ProjectMemberRoles
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time

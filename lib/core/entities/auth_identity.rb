@@ -11,7 +11,7 @@ class AuthIdentity < Hanami::Entity
 
     attribute :uid, Types::String
     attribute :token, Types::String
-    attribute :type, ::Types::AuthIdentityTypes
+    attribute :type, Core::Types::AuthIdentityTypes
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time

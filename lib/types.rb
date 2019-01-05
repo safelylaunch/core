@@ -5,32 +5,36 @@ require 'dry-types'
 # Module with all project types
 #
 # {http://dry-rb.org/gems/dry-types/ Dry-types documentation}
-module Types
-  include Dry::Types.module
+module Core
+  module Types
+    include Dry::Types.module
 
-  # System types
-  LoggerLevel = Symbol.constructor(proc { |value| value.to_s.downcase.to_sym })
-                      .default(:info)
-                      .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
+    # System types
+    LoggerLevel = Symbol.constructor(proc { |value| value.to_s.downcase.to_sym })
+      .default(:info)
+      .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
 
-  # Toggle and envs
-  ToggleStatuses = String.constructor(proc { |value| value.to_s.downcase })
-                         .default('disable')
-                         .enum('enable', 'disable')
+    # Toggle and envs
+    ToggleStatuses = String.constructor(proc { |value| value.to_s.downcase })
+      .default('disable')
+      .enum('enable', 'disable')
 
-  ToggleTypes = String.constructor(proc { |value| value.to_s.downcase })
-                      .default('boolean')
-                      .enum('boolean')
+    ToggleTypes = String.constructor(proc { |value| value.to_s.downcase })
+      .default('boolean')
+      .enum('boolean')
 
-  AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
-                       .default('user')
-                       .enum('user')
+    # accounts
+    AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
+      .default('user')
+      .enum('user')
 
-  AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
-                            .default('google')
-                            .enum('google')
+    AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
+      .default('google')
+      .enum('google')
 
-  ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
-                             .default('member')
-                             .enum('admin', 'member')
+    # projects
+    ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
+      .default('member')
+      .enum('admin', 'member')
+  end
 end

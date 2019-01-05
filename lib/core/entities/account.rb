@@ -17,7 +17,7 @@ class Account < Hanami::Entity
     attribute :uuid, Types::String
     attribute :email, Types::String
     attribute :avatar_url, Types::String
-    attribute :role, ::Types::AccountRoles
+    attribute :role, Core::Types::AccountRoles
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time

@@ -8,7 +8,7 @@ Container.boot(:logger) do |container|
       SemanticLogger.add_appender(io: logger_io)
     end
 
-    SemanticLogger.default_level = Types::LoggerLevel[ENV['LOGGER_LEVEL']]
+    SemanticLogger.default_level = Core::Types::LoggerLevel[ENV['LOGGER_LEVEL']]
     container.register(:logger, SemanticLogger['PricesAPI'])
 
     if Hanami.env == :production
