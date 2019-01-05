@@ -29,4 +29,8 @@ module Types
   AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
                       .default('google')
                       .enum('google')
+
+  ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
+                      .default('member')
+                      .enum('admin', 'member')
 end
