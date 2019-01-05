@@ -9,7 +9,6 @@ class Project < Hanami::Entity
     attribute :id, Types::Int
     attribute :owner_id, Types::Int
     attribute :owner, Types::Entity(Account)
-
     attribute :environments, Types::Collection(Environment)
 
     attribute :name, Types::String

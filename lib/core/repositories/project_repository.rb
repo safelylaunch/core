@@ -11,4 +11,18 @@ class ProjectRepository < Hanami::Repository
       .where(project_members[:account_id].qualified => account_id)
       .map_to(Project).to_a
   end
+
+  def create_for_member(account_id, name)
+    transaction do
+      project = create(owner_id: account_id, name: name)
+      project_member_repo.create(account_id: account_id, project_id: project.id, role: 'admin')
+      project
+    end
+  end
+
+  # HACK: hack for '#create_for_member when user has project with same name' spec
+  # TODO: drop this hack
+  def project_member_repo
+    @project_member_repo ||= ProjectMemberRepository.new
+  end
 end

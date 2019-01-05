@@ -24,4 +24,35 @@ RSpec.describe ProjectRepository, type: :repository do
       it { expect(subject).to eq([]) }
     end
   end
+
+  describe '#create_for_member' do
+    subject { repo.create_for_member(account.id, 'test') }
+
+    let(:account) { Fabricate.create(:account) }
+
+    context 'when user can create a project' do
+      it { expect(subject).to be_a(Project) }
+      it { expect(subject.owner_id).to eq(account.id) }
+
+      it { expect { subject }.to change { repo.root.to_a.count }.by(1) }
+      it { expect { subject }.to change { ProjectMemberRepository.new.root.to_a.count }.by(1) }
+
+      it 'setups a user as a admin of the project' do
+        project = subject
+        project_members = ProjectMemberRepository.new.root.where(account_id: account.id, project_id: project.id)
+
+        expect(project_members.count).to eq(1)
+        expect(project_members.first.role).to eq('admin')
+      end
+    end
+
+    context 'when user has project with same name' do
+      before { Fabricate.create(:project, name: 'test', owner_id: account.id) }
+
+      it do
+        expect(repo.project_member_repo).to_not receive(:create)
+        expect { subject }.to raise_error(Hanami::Model::UniqueConstraintViolationError)
+      end
+    end
+  end
 end
