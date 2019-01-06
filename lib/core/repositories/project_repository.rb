@@ -27,4 +27,8 @@ class ProjectRepository < Hanami::Repository
   def project_member_repo
     @project_member_repo ||= ProjectMemberRepository.new
   end
+
+  def remove_member(account_id, project_id)
+    project_members.where(account_id: account_id, project_id: project_id).delete
+  end
 end

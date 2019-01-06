@@ -57,4 +57,30 @@ RSpec.describe ProjectRepository, type: :repository do
       end
     end
   end
+
+  describe '#remove_member' do
+    subject { repo.remove_member(account.id, project.id) }
+
+    let(:account) { Fabricate.create(:account) }
+    let(:other_account) { Fabricate.create(:account) }
+
+    let(:project) { Fabricate.create(:project, name: 'test', owner_id: account.id) }
+
+    context 'when project contain any members' do
+      before do
+        Fabricate.create(:project_member, account_id: account.id, project_id: project.id)
+        Fabricate.create(:project_member, account_id: other_account.id, project_id: project.id)
+      end
+
+      it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(-1) }
+    end
+
+    context 'when project does not contain any members' do
+      before do
+        Fabricate.create(:project_member, account_id: other_account.id, project_id: project.id)
+      end
+
+      it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(0) }
+    end
+  end
 end
