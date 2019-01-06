@@ -39,7 +39,8 @@ RSpec.describe Projects::Operations::InviteMember, type: :operation do
   context 'with real dependencies' do
     let(:operation) { described_class.new }
     let(:project) { Fabricate.create(:project) }
-    let(:account) { Fabricate.create(:account, email: 'anton@test.com') }
+
+    before { Fabricate.create(:account, email: 'anton@test.com') }
 
     subject { operation.call(email: 'anton@test.com', project_id: project.id, role: 'admin') }
 
