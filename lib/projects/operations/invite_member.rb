@@ -8,14 +8,24 @@ module Projects
       include Dry::Monads::Do.for(:call)
       include Dry::Monads::Try::Mixin
 
-      include Import[project_member_repo: 'repositories.project_member']
+      include Import[
+        account_repo: 'repositories.account',
+        project_member_repo: 'repositories.project_member'
+      ]
 
-      def call(project_id:, account_id:, role:)
+      def call(project_id:, email:, role:)
         role = yield validate_role(role)
-        Success(project_member_repo.create(account_id: account_id, project_id: project_id, role: role))
+        account = yield find_account(email)
+
+        Success(project_member_repo.create(account_id: account.id, project_id: project_id, role: role))
       end
 
     private
+
+      def find_account(email)
+        account = account_repo.find_by_email(email)
+        account ? Success(account) : Failure(:account_not_found)
+      end
 
       def validate_role(role)
         Try(Dry::Types::ConstraintError) do

@@ -11,7 +11,7 @@ Hanami::Model.migration do
 
       column :name,       String
       column :uuid,       String
-      column :email,      String
+      column :email,      String, null: false, unique: true
       column :avatar_url, String
       column :role, 'account_roles', null: false, default: 'user'
 

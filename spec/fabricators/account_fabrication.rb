@@ -2,7 +2,7 @@
 
 Fabricator(:account) do
   name 'Anton Test'
-  email 'test@md.com'
+  email { sequence(:email) { |i| "user#{i}@test.com" } }
 
   role 'user'
 end
