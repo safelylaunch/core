@@ -2,7 +2,7 @@
 
 Fabricator(:environment) do
   name 'test'
-  api_key '1234567890'
+  api_key { SecureRandom.uuid }
   color 'ffffff'
 
   project_id { Fabricate.create(:project).id }

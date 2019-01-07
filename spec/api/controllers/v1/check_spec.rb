@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Api::Controllers::V1::Check, type: :action do
-  let(:params) { { key: 'test-toggle', token: 'tokenhere' } }
+  let(:params) { { key: 'test-toggle', token: uuid } }
+  let(:uuid) { SecureRandom.uuid }
   let(:action) do
     described_class.new(
       operation: operation,
@@ -35,7 +36,7 @@ RSpec.describe Api::Controllers::V1::Check, type: :action do
           error: {
             type: 'not_found',
             message: 'Toggle with key "test-toggle" not found',
-            params: { key: 'test-toggle', token: 'tokenhere' }
+            params: { key: 'test-toggle', token: uuid }
           }
         )
       end
@@ -45,7 +46,7 @@ RSpec.describe Api::Controllers::V1::Check, type: :action do
   context 'when customer sends invalid token' do
     let(:operation) { ->(*) { Success(key: 'test-toggle', enable: true) } }
     let(:authorizer) { ->(*) { Failure(error_object) } }
-    let(:error_object) { ErrorObject.new(:auth_failure, token: 'tokenhere') }
+    let(:error_object) { ErrorObject.new(:auth_failure, token: uuid) }
 
     it 'returns toggle status with error' do
       expect(subject).to have_http_status(400)
@@ -54,8 +55,8 @@ RSpec.describe Api::Controllers::V1::Check, type: :action do
         enable: false,
         error: {
           type: 'auth_failure',
-          message: 'Invalid token "tokenhere"',
-          params: { key: 'test-toggle', token: 'tokenhere' }
+          message: "Invalid token \"#{uuid}\"",
+          params: { key: 'test-toggle', token: uuid }
         }
       )
     end
@@ -63,9 +64,9 @@ RSpec.describe Api::Controllers::V1::Check, type: :action do
 
   context 'with real dependencies' do
     let(:action) { described_class.new }
-    let(:environment) { Fabricate.create(:environment, api_key: 'tokenhere') }
+    let(:environment) { Fabricate.create(:environment, api_key: uuid) }
     let(:toggle) { Fabricate.create(:toggle, environment_id: environment.id) }
-    let(:params) { { key: toggle.key, token: 'tokenhere' } }
+    let(:params) { { key: toggle.key, token: uuid } }
 
     it 'returns toggle status' do
       expect(subject).to be_success

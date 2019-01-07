@@ -2,14 +2,15 @@
 
 RSpec.describe EnvironmentRepository, type: :repository do
   let(:repo) { described_class.new }
+  let(:uuid) { SecureRandom.uuid }
 
   describe '#find_for_token' do
-    let(:environment) { Fabricate.create(:environment, api_key: 'tokenhere') }
+    before { Fabricate.create(:environment, api_key: uuid) }
 
     subject { repo.find_for_token(token) }
 
     context 'when token correct' do
-      let(:token) { environment.api_key }
+      let(:token) { uuid }
 
       it { expect(subject).to be_a(Environment) }
     end

@@ -2,7 +2,8 @@
 
 RSpec.describe Api::Controllers::V1::DefaultStatuses, type: :action do
   let(:action) { described_class.new(operation: operation, authorizer: authorizer) }
-  let(:params) { { token: 'tokenhere' } }
+  let(:params) { { token: uuid } }
+  let(:uuid) { SecureRandom.uuid }
 
   subject { action.call(params) }
 
@@ -42,7 +43,7 @@ RSpec.describe Api::Controllers::V1::DefaultStatuses, type: :action do
           error: {
             type: 'server_error',
             message: 'Server Error',
-            params: { token: 'tokenhere' }
+            params: { token: uuid }
           }
         )
       end
@@ -52,15 +53,15 @@ RSpec.describe Api::Controllers::V1::DefaultStatuses, type: :action do
   context 'when customer sends invalid token' do
     let(:operation) { ->(*) { Success(key: 'test-toggle', enable: true) } }
     let(:authorizer) { ->(*) { Failure(error_object) } }
-    let(:error_object) { ErrorObject.new(:auth_failure, token: 'tokenhere') }
+    let(:error_object) { ErrorObject.new(:auth_failure, token: uuid) }
 
     it 'returns toggle status with error' do
       expect(subject).to have_http_status(400)
       expect(subject).to include_json(
         error: {
           type: 'auth_failure',
-          message: 'Invalid token "tokenhere"',
-          params: { token: 'tokenhere' }
+          message: "Invalid token \"#{uuid}\"",
+          params: { token: uuid }
         }
       )
     end
@@ -68,8 +69,8 @@ RSpec.describe Api::Controllers::V1::DefaultStatuses, type: :action do
 
   context 'with real dependencies' do
     let(:action) { described_class.new }
-    let(:environment) { Fabricate.create(:environment, api_key: 'tokenhere') }
-    let(:params) { { token: 'tokenhere' } }
+    let(:environment) { Fabricate.create(:environment, api_key: uuid) }
+    let(:params) { { token: uuid } }
 
     before do
       Fabricate.create(:toggle, key: 'test-toggle', environment_id: environment.id, status: 'enable')

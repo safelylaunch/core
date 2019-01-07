@@ -10,7 +10,7 @@ class Environment < Hanami::Entity
     attribute :project, Types::Entity(Project)
 
     attribute :name, Types::String
-    attribute :api_key, Types::String
+    attribute :api_key, Core::Types::UUID
     attribute :color, Types::String
 
     attribute :created_at, Types::Time
