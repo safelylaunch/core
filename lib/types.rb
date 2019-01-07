@@ -40,5 +40,9 @@ module Core
     ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
       .default('member')
       .enum('admin', 'member')
+
+    # env
+    # TODO: Create type for env color and uodate db migration size
+    # EnvironmentColor = String.constructor(proc { |value| value.to_s.downcase }).constrained(format: /\A[0-9a-f]{6})\z/)
   end
 end
