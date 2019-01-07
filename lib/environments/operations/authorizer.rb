@@ -3,8 +3,6 @@
 module Environments
   module Operations
     class Authorizer < Libs::Operation
-      include Dry::Monads::Do.for(:call)
-
       include Import[env_repo: 'repositories.environment']
 
       def call(token:)

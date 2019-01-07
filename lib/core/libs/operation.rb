@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require 'dry/monads/result'
+require 'dry/monads/try'
 require 'dry/monads/do'
+require 'dry/monads/do/all'
 
 module Libs
   # Base operation class. Provides dry-monads do notation and Result monads.
@@ -24,8 +26,10 @@ module Libs
   #
   #   Operations::Read.new.call(a: 1) # => Success(a: 1)
   class Operation
+    include Dry::Monads::Try::Mixin
     include Dry::Monads::Result::Mixin
-    include Dry::Monads::Do.for(:call)
+    include Dry::Monads::Do::All
+
     Dry::Validation.load_extensions(:monads)
 
     def call(*)

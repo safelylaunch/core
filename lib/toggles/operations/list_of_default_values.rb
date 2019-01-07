@@ -3,9 +3,6 @@
 module Toggles
   module Operations
     class ListOfDefaultValues < Libs::Operation
-      include Dry::Monads::Do.for(:call)
-      include Dry::Monads::Try::Mixin
-
       include Import[toggle_repo: 'repositories.toggle']
 
       def call(environment_id:)

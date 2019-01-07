@@ -3,8 +3,6 @@
 module Projects
   module Operations
     class RemoveMember < Libs::Operation
-      include Dry::Monads::Do.for(:call)
-
       include Import[project_repo: 'repositories.project']
 
       # TODO: check that member can remove admin

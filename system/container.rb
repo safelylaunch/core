@@ -3,6 +3,7 @@
 require 'dry/system/container'
 require 'dry/system/hanami'
 require_relative '../lib/types'
+require_relative '../lib/core/libs/operation'
 require_relative './core_ext'
 
 # General container class for project dependencies
@@ -22,6 +23,9 @@ class Container < Dry::System::Container
 
   #  environments
   register_folder! 'environments/operations'
+
+  #  projects
+  register_folder! 'projects/operations'
 
   configure do |config|
     config.env = Hanami.env

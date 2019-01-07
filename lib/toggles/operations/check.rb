@@ -3,8 +3,6 @@
 module Toggles
   module Operations
     class Check < Libs::Operation
-      include Dry::Monads::Do.for(:call)
-
       include Import[toggle_repo: 'repositories.toggle']
 
       def call(key:, environment_id:)
