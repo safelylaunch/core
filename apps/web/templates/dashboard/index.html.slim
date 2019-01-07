@@ -1,8 +1,9 @@
 h1 Projects
 
 - projects.each do |project|
-  h3 = project.name
+  h2 = project.name
 
+  b Environments:
   ul
-    - projects.environments.each do |env|
+    - project.environments.each do |env|
       li = env.name
