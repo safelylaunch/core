@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Projects::Operations::Create, type: :operation do
-  let(:operation) { described_class.new(project_repo: project_repo) }
-  let(:project_repo) { instance_double('ProjectRepository', create_for_member: Project.new(id: 1)) }
+  let(:operation) do
+    described_class.new(project_repo: project_repo, env_repo: env_repo)
+  end
+
+  let(:project_repo) { instance_double('ProjectRepository', create_for_member: Project.new(id: 123)) }
+  let(:env_repo) { instance_double('EnvironmentRepository', create: Environment.new(id: 1)) }
   let(:account) { Account.new(id: 1) }
 
   subject { operation.call(name: 'test safelylaunch project', account_id: account.id) }
@@ -11,6 +15,11 @@ RSpec.describe Projects::Operations::Create, type: :operation do
     it 'returns success monoid with a new project object' do
       expect(subject).to be_success
       expect(subject.value!).to be_a(Project)
+    end
+
+    it 'creates a default env for project' do
+      expect(env_repo).to receive(:create).with(project_id: 123, name: 'production', color: 'ff0000')
+      expect(subject).to be_success
     end
   end
 
