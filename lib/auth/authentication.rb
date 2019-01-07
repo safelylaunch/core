@@ -3,7 +3,7 @@
 module Auth
   module Authentication
     def authenticate!
-      redirect_to('/') unless authenticated?
+      redirect_to('/login') unless authenticated?
     end
 
     def authenticated?
@@ -11,7 +11,8 @@ module Auth
     end
 
     def current_account
-      @current_account ||= Account.new(id: 1)
+      payload = session[:account] || { id: 1 }
+      @current_account ||= Account.new(payload)
     end
   end
 end
