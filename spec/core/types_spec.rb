@@ -1,0 +1,60 @@
+# frozen_string_literal: true
+
+RSpec.describe Core::Types do
+  describe 'LoggerLevel' do
+    let(:type) { Core::Types::LoggerLevel }
+
+    [
+      [nil, :info],
+
+      [:trace, :trace],
+      [:unknown, :unknown],
+      [:error, :error],
+      [:fatal, :fatal],
+      [:warn, :warn],
+      [:info, :info],
+      [:debug, :debug],
+
+      ['trace', :trace],
+      ['unknown', :unknown],
+      ['error', :error],
+      ['fatal', :fatal],
+      ['warn', :warn],
+      ['info', :info],
+      ['debug', :debug],
+    ].each do |value, result|
+      it { expect(type[value]).to eq(result) }
+    end
+
+    it { expect{ type['other'] }.to raise_error(Dry::Types::ConstraintError) }
+    it { expect{ type[:other] }.to raise_error(Dry::Types::ConstraintError) }
+  end
+
+  describe 'UUID' do
+    let(:type) { Core::Types::UUID }
+    let(:uuid) { SecureRandom.uuid }
+
+    it { expect(type[uuid]).to eq(uuid) }
+    it { expect{ type['anything'] }.to raise_error(Dry::Types::ConstraintError) }
+  end
+
+  xdescribe 'ToggleStatuses' do
+    let(:type) { Core::Types::ToggleStatuses }
+  end
+
+  xdescribe 'ToggleTypes' do
+    let(:type) { Core::Types::ToggleTypes }
+  end
+
+  xdescribe 'AccountRoles' do
+    let(:type) { Core::Types::AccountRoles }
+  end
+
+  xdescribe 'AuthIdentityTypes' do
+    let(:type) { Core::Types::AuthIdentityTypes }
+  end
+
+  xdescribe 'ProjectMemberRoles' do
+    let(:type) { Core::Types::ProjectMemberRoles }
+  end
+end
