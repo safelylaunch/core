@@ -11,16 +11,16 @@ module Projects
       DEFAULT_ENV_NAME = 'production'
       DEFAULT_ENV_COLOR = 'ff0000'
 
-      def call(name:, account_id:)
-        project = yield create_project(name, account_id)
+      def call(name:, owner_id:)
+        project = yield create_project(name, owner_id)
         yield create_default_environment(project.id)
 
         Success(project)
       end
 
-      def create_project(name, account_id)
+      def create_project(name, owner_id)
         Try(Hanami::Model::UniqueConstraintViolationError) do
-          project_repo.create_for_member(account_id, name)
+          project_repo.create_for_member(owner_id, name)
         end.to_result
       end
 

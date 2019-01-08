@@ -9,7 +9,7 @@ RSpec.describe Projects::Operations::Create, type: :operation do
   let(:env_repo) { instance_double('EnvironmentRepository', create: Environment.new(id: 1)) }
   let(:account) { Account.new(id: 1) }
 
-  subject { operation.call(name: 'test safelylaunch project', account_id: account.id) }
+  subject { operation.call(name: 'test safelylaunch project', owner_id: account.id) }
 
   context 'when all is okay' do
     it 'returns success monoid with a new project object' do

@@ -3,9 +3,18 @@ module Web
     module Projects
       class Create
         include Web::Action
+        include Dry::Monads::Result::Mixin
+        include Import[operation: 'projects.operations.create']
 
         def call(params)
-          redirect_to routes.root_path
+          result = operation.call(owner_id: current_account.id, name: params[:project][:name])
+
+          case result
+          when Success
+            redirect_to routes.root_path
+          when Failure
+            redirect_to routes.root_path
+          end
         end
       end
     end
