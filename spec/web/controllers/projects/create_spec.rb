@@ -1,9 +1,22 @@
 RSpec.describe Web::Controllers::Projects::Create, type: :action do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:params) { { 'rack.session' => session } }
+  let(:session) { { account: Account.new(id: 1) } }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  subject { action.call(params) }
+
+  it { expect(subject).to redirect_to('/') }
+
+
+  xcontext 'when user not login' do
+    let(:operation) { ->(*) {} }
+    let(:session) { {} }
+
+    it { expect(subject).to redirect_to('/login') }
+  end
+
+  context 'whith real dependencies' do
+    let(:action) { described_class.new }
+
   end
 end

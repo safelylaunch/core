@@ -5,7 +5,7 @@ module Web
         include Web::Action
 
         def call(params)
-          self.body = 'OK'
+          redirect_to routes.root_path
         end
       end
     end

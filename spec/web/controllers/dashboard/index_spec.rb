@@ -3,7 +3,7 @@
 RSpec.describe Web::Controllers::Dashboard::Index, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:params) { { 'rack.session' => session } }
-  let(:session) { { account: Account.new(id: 123) } }
+  let(:session) { { account: Account.new(id: 1) } }
 
   subject { action.call(params) }
 
@@ -13,7 +13,7 @@ RSpec.describe Web::Controllers::Dashboard::Index, type: :action do
     it { expect(subject).to be_success }
 
     it do
-      allow(operation).to receive(:call).with(account_id: 123)
+      allow(operation).to receive(:call).with(account_id: 1)
       subject
     end
 
