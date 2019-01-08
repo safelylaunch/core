@@ -7,3 +7,8 @@ h1 Projects
   ul
     - project.environments.each do |env|
       li = env.name
+
+hr
+
+= link_to 'Add project', routes.new_project_path
+
