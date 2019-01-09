@@ -1,0 +1,7 @@
+h1 = project.name
+
+b Environments:
+ul
+  - project.environments.each do |env|
+    li = "#{env.name} : #{env.api_key}"
+

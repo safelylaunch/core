@@ -1,12 +1,7 @@
 h1 Projects
 
 - projects.each do |project|
-  h2 = project.name
-
-  b Environments:
-  ul
-    - project.environments.each do |env|
-      li = env.name
+  h2 = link_to project.name, routes.project_path(project.id)
 
 hr
 

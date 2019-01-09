@@ -40,7 +40,7 @@ RSpec.describe Web::Controllers::Projects::Show, type: :action do
 
     let(:project) { Fabricate.create(:project, id: 1) }
     let(:account) { Fabricate.create(:account, id: 1) }
-    
+
     before { Fabricate.create(:project_member, account_id: account.id, project_id: project.id) }
 
     it { expect(subject).to be_success }
