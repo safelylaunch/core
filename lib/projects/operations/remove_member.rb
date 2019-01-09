@@ -6,8 +6,8 @@ module Projects
       include Import[project_repo: 'repositories.project']
 
       # TODO: check that member can remove admin
-      def call(project_id:, account_id:)
-        Success(project_repo.remove_member(account_id, project_id))
+      def call(member_id:, project_id:)
+        Success(project_repo.remove_member(member_id, project_id))
       end
     end
   end

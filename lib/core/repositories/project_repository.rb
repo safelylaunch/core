@@ -28,8 +28,8 @@ class ProjectRepository < Hanami::Repository
     @project_member_repo ||= ProjectMemberRepository.new
   end
 
-  def remove_member(account_id, project_id)
-    project_members.where(account_id: account_id, project_id: project_id).delete
+  def remove_member(id, project_id)
+    project_members.where(id: id, project_id: project_id).delete
   end
 
   def find_with_envs(id)

@@ -59,28 +59,30 @@ RSpec.describe ProjectRepository, type: :repository do
   end
 
   describe '#remove_member' do
-    subject { repo.remove_member(account.id, project.id) }
+    subject { repo.remove_member(member.id, project.id) }
 
-    let(:account) { Fabricate.create(:account) }
-    let(:other_account) { Fabricate.create(:account) }
+    let(:project) { Fabricate.create(:project, name: 'test') }
+    let(:other_project) { Fabricate.create(:project, name: 'test') }
+    let(:project_member_repo) { ProjectMemberRepository.new }
 
-    let(:project) { Fabricate.create(:project, name: 'test', owner_id: account.id) }
+    before { Fabricate.create(:project_member, project_id: project.id) }
 
     context 'when project contain any members' do
-      before do
-        Fabricate.create(:project_member, account_id: account.id, project_id: project.id)
-        Fabricate.create(:project_member, account_id: other_account.id, project_id: project.id)
-      end
+      let(:member) { Fabricate.create(:project_member, project_id: project.id) }
 
-      it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(-1) }
+      it 'deletes member from DB' do
+        subject 
+        expect(project_member_repo.find(member.id)).to eq(nil)
+      end
     end
 
     context 'when project does not contain any members' do
-      before do
-        Fabricate.create(:project_member, account_id: other_account.id, project_id: project.id)
-      end
+      let(:member) { Fabricate.create(:project_member, project_id: other_project.id) }
 
-      it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(0) }
+      it 'does not delete member from DB' do
+        subject 
+        expect(project_member_repo.find(member.id)).to be_a(ProjectMember)
+      end
     end
   end
 
