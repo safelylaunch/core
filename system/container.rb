@@ -23,6 +23,7 @@ class Container < Dry::System::Container
 
   #  environments
   register_folder! 'environments/operations'
+  register_folder! 'environments/libs'
 
   #  projects
   register_folder! 'projects/operations'

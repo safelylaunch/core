@@ -2,7 +2,7 @@
 
 module Environments
   module Operations
-    class Authorizer < Libs::Operation
+    class Authorizer < ::Libs::Operation
       include Import[env_repo: 'repositories.environment']
 
       def call(token:)
