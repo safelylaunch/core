@@ -31,4 +31,12 @@ class ProjectRepository < Hanami::Repository
   def remove_member(account_id, project_id)
     project_members.where(account_id: account_id, project_id: project_id).delete
   end
+
+  def find_with_envs(id)
+    aggregate(:environments).where(id: id).map_to(Project).one
+  end
+
+  def member?(account_id, project_id)
+    project_members.where(account_id: account_id, project_id: project_id).exist?
+  end
 end

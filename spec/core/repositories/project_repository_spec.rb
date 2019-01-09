@@ -83,4 +83,56 @@ RSpec.describe ProjectRepository, type: :repository do
       it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(0) }
     end
   end
+
+  describe '#find_with_envs' do
+    subject { repo.find_with_envs(project_id) }
+
+    let(:project) { Fabricate.create(:project, name: 'test') }
+
+    before { Fabricate.create(:environment, project_id: project.id) }
+
+    context 'when project id exist in db' do
+      let(:project_id) { project.id }
+
+      it { expect(subject).to be_a(Project) }
+      it { expect(subject.environments.count).to eq(1) }
+      it { expect(subject.environments).to all(be_a(Environment)) }
+    end
+
+    context 'when project does not contain any members' do
+      let(:project_id) { 0 }
+
+      it { expect(subject).to eq(nil) }
+    end
+  end
+
+  describe '#member?' do
+    subject { repo.member?(account_id, project_id) }
+
+    let(:account) { Fabricate.create(:account) }
+    let(:project) { Fabricate.create(:project, name: 'test', owner_id: account.id) }
+
+    before { Fabricate.create(:project_member, account_id: account.id, project_id: project.id) }
+
+    context 'when account is member of project' do
+      let(:account_id) { account.id }
+      let(:project_id) { project.id }
+
+      it { expect(subject).to eq(true) }
+    end
+
+    context 'when account is not a member of project' do
+      let(:account_id) { 0 }
+      let(:project_id) { project.id }
+
+      it { expect(subject).to eq(false) }
+    end
+
+    context 'when account is member of the other project' do
+      let(:account_id) { account.id }
+      let(:project_id) { 0 }
+
+      it { expect(subject).to eq(false) }
+    end
+  end
 end
