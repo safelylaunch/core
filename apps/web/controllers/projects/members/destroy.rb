@@ -1,6 +1,6 @@
 module Web
   module Controllers
-    module Project
+    module Projects
       module Members
         class Destroy
           include Web::Action

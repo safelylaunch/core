@@ -1,6 +1,6 @@
 module Web
   module Controllers
-    module Project
+    module Projects
       module Members
         class Create
           include Web::Action

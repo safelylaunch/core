@@ -1,7 +1,13 @@
 h1 members
 
+= add_member_form
+
+br
+
 ul
   - members.each do |member|
-    li #{member.account.name} : #{member.account.email} : #{member.role}
+    li #{member.account.name} : #{member.account.email} : #{member.role} #{ remove_member_button(member.id) }
 
+br
 
+= link_to 'Back to project', routes.project_path(params[:project_id])
