@@ -1,3 +1,7 @@
 h1 members
 
+ul
+  - members.each do |member|
+    li #{member.account.name} : #{member.account.email} : #{member.role}
+
 

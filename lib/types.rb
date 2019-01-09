@@ -30,7 +30,7 @@ module Core
     # accounts
     AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
       .default('user')
-      .enum('user')
+      .enum('user', 'admin')
 
     AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
       .default('google')
