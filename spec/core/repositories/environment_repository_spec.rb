@@ -21,4 +21,26 @@ RSpec.describe EnvironmentRepository, type: :repository do
       it { expect(subject).to eq(nil) }
     end
   end
+
+  describe '#find_with_toggles' do
+    subject { repo.find_with_toggles(env_id) }
+
+    let(:environment) { Fabricate.create(:environment)  }
+
+    before { Fabricate.create(:toggle, environment_id: environment.id) }
+
+    context 'when project id exist in db' do
+      let(:env_id) { environment.id }
+
+      it { expect(subject).to be_a(Environment) }
+      it { expect(subject.toggles.count).to eq(1) }
+      it { expect(subject.toggles).to all(be_a(Toggle)) }
+    end
+
+    context 'when project does not contain any members' do
+      let(:env_id) { 0 }
+
+      it { expect(subject).to eq(nil) }
+    end
+  end
 end

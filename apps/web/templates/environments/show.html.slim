@@ -1,0 +1,7 @@
+h1 = environment.name
+
+b Toggles:
+ul
+  - environment.toggles.each do |toggle|
+    li = "#{toggle.status} > #{toggle.key} : #{toggle.name} : #{toggle.type}"
+

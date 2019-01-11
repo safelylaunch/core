@@ -3,11 +3,16 @@
 class Project < Hanami::Entity
 end
 
+class Toggle < Hanami::Entity
+end
+
 class Environment < Hanami::Entity
   attributes do
     attribute :id, Types::Int
     attribute :project_id, Types::Int
     attribute :project, Types::Entity(Project)
+
+    attribute :toggles, Types::Collection(Toggle)
 
     attribute :name, Types::String
     attribute :api_key, Core::Types::UUID
