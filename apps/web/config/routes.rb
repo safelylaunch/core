@@ -8,4 +8,7 @@ resources :projects, only: %i[new create show] do
   resources :members, only: %i[index create destroy]
 end
 
-resources :environments, only: %i[new create show]
+# TODO: replace it to projects
+resources :environments, only: %i[new create show] do
+  resources :toggles, only: %i[new create], controller: 'toggles'
+end
