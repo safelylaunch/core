@@ -6,7 +6,7 @@ module Web
 
         def form
           form_for :project, routes.projects_path, method: :post do
-            text_field :owner_ir, type: 'hidden', value: current_account.id
+            text_field :owner_id, type: 'hidden', value: current_account.id
 
             div do
               label :name
