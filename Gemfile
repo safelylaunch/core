@@ -54,6 +54,9 @@ group :test, :development do
 
   # style check
   gem 'rubocop', require: false
+
+  # mutation testing
+  gem 'mutant-rspec'
 end
 
 group :test do
