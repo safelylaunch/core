@@ -3,9 +3,20 @@ module Web
     module Toggles
       class Create
         include Web::Action
+        include Dry::Monads::Result::Mixin
+        include Import[operation: 'toggles.operations.create']
 
         def call(params)
-          self.body = 'OK'
+          payload = params[:toggle]
+          payload[:environment_id] = params[:environment_id].to_i
+          result = operation.call(payload)
+
+          case result
+          when Success
+            redirect_to routes.environment_path(params[:environment_id])
+          when Failure
+            redirect_to routes.environment_path(params[:environment_id])
+          end
         end
       end
     end

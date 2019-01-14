@@ -30,7 +30,7 @@ module Web
 
             div do
               label :status
-              select :status, { 'Enable' => 'Enable', 'Disable' => 'disable' }
+              select :status, { 'Enable' => 'enable', 'Disable' => 'disable' }
             end
 
             submit 'Create'
