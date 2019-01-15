@@ -6,5 +6,19 @@ ul
     li = "#{link_to env.name, routes.project_environment_path(params[:id], env.id)} : #{env.api_key}"
 
 br
+hr
+br
 
 = link_to 'Create a new environment', routes.new_project_environment_path(project.id)
+
+br
+hr
+br
+
+h2 Projects
+ul
+  - projects.each do |project|
+    li
+      = project.id.to_i == params[:id].to_i ? '> ' : ''
+      = link_to project.name, routes.project_path(project.id)
+

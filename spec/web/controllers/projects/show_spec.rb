@@ -1,7 +1,8 @@
 RSpec.describe Web::Controllers::Projects::Show, type: :action do
-  let(:action) { described_class.new(operation: operation) }
+  let(:action) { described_class.new(operation: operation, projects_operation: projects_operation) }
   let(:params) { { 'rack.session' => session, id: 123 } }
   let(:session) { { account: Account.new(id: 1) } }
+  let(:projects_operation) { ->(*) { Success([Project.new(id: 321)]) } }
 
   subject { action.call(params) }
 
@@ -17,7 +18,11 @@ RSpec.describe Web::Controllers::Projects::Show, type: :action do
 
     it do
       subject
+
       expect(action.project).to be_a(Project)
+
+      expect(action.projects.size).to eq(1)
+      expect(action.projects).to all(be_a(Project))
     end
   end
 

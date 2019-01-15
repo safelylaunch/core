@@ -6,6 +6,18 @@ ul
     li = "#{toggle.status} > #{toggle.key} : #{toggle.name} : #{toggle.type}"
 
 br
+hr
 
 = link_to 'Create new toggle', routes.new_project_environment_toggle_path(params[:project_id], params[:id])
+
+br
+hr
+br
+
+h2 Projects
+ul
+  - projects.each do |project|
+    li
+      = project.id.to_i == params[:project_id].to_i ? '> ' : ''
+      = link_to project.name, routes.project_path(project.id)
 
