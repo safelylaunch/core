@@ -5,11 +5,21 @@ ul
   - project.environments.each do |env|
     li = "#{link_to env.name, routes.project_environment_path(params[:id], env.id)} : #{env.api_key}"
 
+= link_to 'Create a new environment', routes.new_project_environment_path(project.id)
+
 br
 hr
 br
 
-= link_to 'Create a new environment', routes.new_project_environment_path(project.id)
+b Members
+
+ul
+  - project.members.each do |member|
+    li
+      = "#{member.name} : #{member.email} : "
+      = link_to 'remove', '#'
+
+= link_to 'invite form will be here', '#'
 
 br
 hr

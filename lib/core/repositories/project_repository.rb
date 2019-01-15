@@ -33,7 +33,7 @@ class ProjectRepository < Hanami::Repository
   end
 
   def find_with_envs(id)
-    aggregate(:environments).where(id: id).map_to(Project).one
+    aggregate(:environments, :members).where(id: id).map_to(Project).one
   end
 
   def member?(account_id, project_id)
