@@ -1,7 +1,16 @@
-h1 Projects
+h2 Projects
+ul
+  - projects.each do |project|
+    li
+      = project.id.to_i == params[:project_id].to_i ? '> ' : ''
+      = link_to project.name, routes.project_path(project.id)
 
-- projects.each do |project|
-  h2 = link_to project.name, routes.project_path(project.id)
+    ul style="list-style-type:none"
+      - project.environments.each do |environment|
+        li
+          span style="color: ##{environment.color}"
+            | # 
+          = link_to environment.name, routes.project_environment_path(project.id, environment.id)
 
 hr
 
