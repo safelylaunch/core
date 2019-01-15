@@ -13,9 +13,9 @@ module Web
 
           case result
           when Success
-            redirect_to routes.environment_path(params[:environment_id])
+            redirect_to routes.project_environment_path(params[:project_id], params[:environment_id])
           when Failure
-            redirect_to routes.environment_path(params[:environment_id])
+            redirect_to routes.project_environment_path(params[:project_id], params[:environment_id])
           end
         end
       end

@@ -6,9 +6,8 @@ get '/login', to: 'auth#login'
 
 resources :projects, only: %i[new create show] do
   resources :members, only: %i[index create destroy]
-end
 
-# TODO: replace it to projects
-resources :environments, only: %i[new create show] do
-  resources :toggles, only: %i[new create], controller: 'toggles'
+  resources :environments, only: %i[new create show], controller: 'environments' do
+    resources :toggles, only: %i[new create], controller: 'toggles'
+  end
 end

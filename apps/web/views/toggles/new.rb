@@ -5,7 +5,7 @@ module Web
         include Web::View
 
         def form
-          form_for :toggle, routes.environment_toggles_path(params[:environment_id]), method: :post do
+          form_for :toggle, routes.project_environment_toggles_path(params[:project_id], params[:environment_id]), method: :post do
             text_field :environment_id, type: 'hidden', value: params[:environment_id]
 
             div do

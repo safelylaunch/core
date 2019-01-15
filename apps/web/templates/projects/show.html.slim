@@ -3,8 +3,8 @@ h1 = project.name
 b Environments:
 ul
   - project.environments.each do |env|
-    li = "#{link_to env.name, routes.environment_path(env.id)} : #{env.api_key}"
+    li = "#{link_to env.name, routes.project_environment_path(params[:id], env.id)} : #{env.api_key}"
 
 br
 
-= link_to 'Create a new environment', routes.new_environment_path(project_id: project.id)
+= link_to 'Create a new environment', routes.new_project_environment_path(project.id)

@@ -5,7 +5,7 @@ module Web
         include Web::View
 
         def form
-          form_for :environment, routes.environments_path, method: :post do
+          form_for :environment, routes.project_environments_path(params[:project_id]), method: :post do
             text_field :project_id, type: 'hidden', value: params[:project_id]
 
             div do
