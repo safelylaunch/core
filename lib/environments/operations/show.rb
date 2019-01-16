@@ -6,7 +6,8 @@ module Environments
       include Import[env_repo: 'repositories.environment']
 
       def call(environment_id:, account_id:)
-        Success(env_repo.find_with_toggles(environment_id))
+        env = env_repo.find_with_toggles(environment_id)
+        env ? Success(env) : Failure(:not_found)
       end
     end
   end

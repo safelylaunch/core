@@ -9,14 +9,6 @@ RSpec.describe Environments::Operations::Show, type: :operation do
   let(:environment_id) { 1 }
   let(:account_id) { 1 }
 
-  context 'when account is a member of project and data is valid' do
-    xit { expect(subject).to be_success }
-  end
-
-  context 'when account is not a member of project' do
-    xit { expect(subject).to be_success }
-  end
-
   context 'when environment exists' do
     let(:environment) { Environment.new(id: 1) }
 
@@ -25,7 +17,9 @@ RSpec.describe Environments::Operations::Show, type: :operation do
   end
 
   context 'when environment does not exist' do
-    xit { expect(subject).to be_success }
+    let(:environment) { nil }
+
+    it { expect(subject).to be_failure }
   end
 
   context 'with real dependencies' do

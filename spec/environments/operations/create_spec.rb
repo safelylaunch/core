@@ -20,10 +20,6 @@ RSpec.describe Environments::Operations::Create, type: :operation do
     end
   end
 
-  context 'when account is not a member of project' do
-    xit { expect(subject).to be_failure }
-  end
-
   context 'with real dependencies' do
     let(:operation) { described_class.new }
     let(:project) { Fabricate.create(:project) }
