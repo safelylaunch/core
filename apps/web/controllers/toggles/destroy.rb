@@ -18,6 +18,12 @@ module Web
             redirect_to routes.project_environment_path(params[:project_id], params[:environment_id])
           end
         end
+
+        private
+
+        def verify_csrf_token?
+          false
+        end
       end
     end
   end

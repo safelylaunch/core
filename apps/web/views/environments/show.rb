@@ -12,6 +12,13 @@ module Web
             input(type: 'submit', value: toggle.status)
           end
         end
+
+        def delete_toggle(toggle)
+          html.form(action: routes.project_environment_toggle_path(params[:project_id], params[:id], toggle.id), method: 'POST') do
+            input(type: 'hidden', name: '_method', value: 'DELETE')
+            input(type: 'submit', value: '✕')
+          end
+        end
       end
     end
   end

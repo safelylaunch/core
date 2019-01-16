@@ -5,7 +5,9 @@ ul
   - environment.toggles.each do |toggle|
     li
       = toggle_status(toggle)
-      = " > #{toggle.key} : #{toggle.name} : #{toggle.type}"
+      = " > #{toggle.key} : #{toggle.name} : #{toggle.type} : "
+      = delete_toggle(toggle)
+
 
 br
 hr
