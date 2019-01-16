@@ -1,6 +1,6 @@
 RSpec.describe Web::Controllers::ToggleStatuses::Update, type: :action do
   let(:action) { described_class.new(operation: operation) }
-  let(:params) { { 'rack.session' => session, toggle: { id: 5 }, project_id: 12, environment_id: 1 } }
+  let(:params) { { 'rack.session' => session, project_id: 12, environment_id: 1, id: 5 } }
   let(:session) { { account: Account.new(id: 1) } }
 
   subject { action.call(params) }
@@ -36,9 +36,7 @@ RSpec.describe Web::Controllers::ToggleStatuses::Update, type: :action do
         'rack.session' => session,
         environment_id: environment.id,
         project_id: environment.project_id, 
-        toggle: {
-          id: toggle.id
-        }
+        id: toggle.id,
       }
     end
     let(:session) { { account: Account.new(id: 1) } }
