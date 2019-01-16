@@ -9,6 +9,6 @@ resources :projects, only: %i[new create show] do
 
   resources :environments, only: %i[new create show], controller: 'environments' do
     resources :toggle_statuses, only: %i[update], controller: 'toggle_statuses'
-    resources :toggles, only: %i[new create], controller: 'toggles'
+    resources :toggles, only: %i[new create destroy], controller: 'toggles'
   end
 end
