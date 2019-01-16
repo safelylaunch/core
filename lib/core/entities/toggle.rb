@@ -20,6 +20,8 @@ class Toggle < Hanami::Entity
     attribute :status, Core::Types::ToggleStatuses
     attribute :default_status, Core::Types::ToggleStatuses
 
+    attribute :tags, Types::Array.default([])
+
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time
   end

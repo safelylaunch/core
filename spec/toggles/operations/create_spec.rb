@@ -14,12 +14,18 @@ RSpec.describe Toggles::Operations::Create, type: :operation do
       name: 'test toggle',
       description: 'have no idea what say here',
       type: 'boolean',
-      status: 'enable'
+      status: 'enable',
+      tags: 'tech, test , other ,core'
     }
   end
 
   context 'when data is valid and all is okay' do
     it { expect(subject).to be_success }
+
+    it 'splits tags right' do
+      expect(toggle_repo).to receive(:create).with(**payload, tags: %w[tech test other core])
+      subject
+    end
   end
 
   context 'when data is invalid' do
@@ -46,7 +52,8 @@ RSpec.describe Toggles::Operations::Create, type: :operation do
           name: 'test toggle',
           description: 'have no idea what say here',
           type: 'invalid',
-          status: 'enable'
+          status: 'enable',
+          tags: 'tech, test , other ,core'
         }
       end
 

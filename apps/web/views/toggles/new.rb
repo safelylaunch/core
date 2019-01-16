@@ -31,6 +31,11 @@ module Web
             end
 
             div do
+              label :tags
+              text_field :tags, placeholder: 'Tags will splitted by ",": tag1,tag2,tag3'
+            end
+
+            div do
               label :status
               select :status, 'Enable' => 'enable', 'Disable' => 'disable'
             end

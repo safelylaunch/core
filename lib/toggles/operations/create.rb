@@ -14,12 +14,16 @@ module Toggles
 
         optional(:description).maybe(:str?)
 
+        optional(:tags).maybe(:str?)
+
         required(:type).filled(Core::Types::ToggleTypes)
         required(:status).filled(Core::Types::ToggleStatuses)
       end
 
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
+
+        payload[:tags] = payload[:tags].to_s.split(/\s?,\s?/)
 
         Try(Hanami::Model::UniqueConstraintViolationError) do
           toggle_repo.create(payload)
