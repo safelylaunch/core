@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Projects::Members::Create, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:params) { { 'rack.session' => session, project_id: 123, member: { email: 'anton@test.com', role: 'member' } } }

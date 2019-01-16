@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Controllers
     module ToggleStatuses
@@ -17,7 +19,7 @@ module Web
           end
         end
 
-      private
+        private
 
         def verify_csrf_token?
           false

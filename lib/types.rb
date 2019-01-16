@@ -11,8 +11,8 @@ module Core
 
     # System types
     LoggerLevel = Symbol.constructor(proc { |value| value.to_s.downcase.to_sym })
-      .default(:info)
-      .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
+                        .default(:info)
+                        .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
 
     UUID = Strict::String.constrained(
       format: /\A(\h{32}|\h{8}-\h{4}-\h{4}-\h{4}-\h{12})\z/
@@ -20,26 +20,26 @@ module Core
 
     # Toggle and envs
     ToggleStatuses = String.constructor(proc { |value| value.to_s.downcase })
-      .default('disable')
-      .enum('enable', 'disable')
+                           .default('disable')
+                           .enum('enable', 'disable')
 
     ToggleTypes = String.constructor(proc { |value| value.to_s.downcase })
-      .default('boolean')
-      .enum('boolean')
+                        .default('boolean')
+                        .enum('boolean')
 
     # accounts
     AccountRoles = String.constructor(proc { |value| value.to_s.downcase })
-      .default('user')
-      .enum('user', 'admin')
+                         .default('user')
+                         .enum('user', 'admin')
 
     AuthIdentityTypes = String.constructor(proc { |value| value.to_s.downcase })
-      .default('google')
-      .enum('google')
+                              .default('google')
+                              .enum('google')
 
     # projects
     ProjectMemberRoles = String.constructor(proc { |value| value.to_s.downcase })
-      .default('member')
-      .enum('admin', 'member')
+                               .default('member')
+                               .enum('admin', 'member')
 
     # env
     # TODO: Create type for env color and uodate db migration size

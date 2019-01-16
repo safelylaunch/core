@@ -17,7 +17,7 @@ module Projects
         Success(project_member_repo.create(account_id: account.id, project_id: project_id, role: role))
       end
 
-    private
+      private
 
       def find_account(email)
         account = account_repo.find_by_email(email)

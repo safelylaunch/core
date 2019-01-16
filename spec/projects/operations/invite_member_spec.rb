@@ -45,6 +45,6 @@ RSpec.describe Projects::Operations::InviteMember, type: :operation do
     subject { operation.call(email: 'anton@test.com', project_id: project.id, role: 'admin') }
 
     it { expect(subject).to be_success }
-    it { expect{ subject }.to change { ProjectMemberRepository.new.all.count }.by(1) }
+    it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(1) }
   end
 end

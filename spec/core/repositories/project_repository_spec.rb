@@ -71,7 +71,7 @@ RSpec.describe ProjectRepository, type: :repository do
       let(:member) { Fabricate.create(:project_member, project_id: project.id) }
 
       it 'deletes member from DB' do
-        subject 
+        subject
         expect(project_member_repo.find(member.id)).to eq(nil)
       end
     end
@@ -80,7 +80,7 @@ RSpec.describe ProjectRepository, type: :repository do
       let(:member) { Fabricate.create(:project_member, project_id: other_project.id) }
 
       it 'does not delete member from DB' do
-        subject 
+        subject
         expect(project_member_repo.find(member.id)).to be_a(ProjectMember)
       end
     end

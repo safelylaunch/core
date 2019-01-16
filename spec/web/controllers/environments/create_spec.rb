@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Environments::Create, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:params) { { 'rack.session' => session, environment: { project_id: 123, name: 'stage', color: '000000' } } }

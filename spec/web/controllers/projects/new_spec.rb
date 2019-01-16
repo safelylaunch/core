@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Projects::New, type: :action do
   let(:action) { described_class.new(projects_operation: projects_operation) }
   let(:params) { { 'rack.session' => session } }

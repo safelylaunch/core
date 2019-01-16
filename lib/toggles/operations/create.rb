@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Toggles
   module Operations
     class Create < Libs::Operation

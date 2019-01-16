@@ -4,7 +4,7 @@ RSpec.describe Environments::Operations::Show, type: :operation do
   let(:operation) { described_class.new(env_repo: env_repo) }
   let(:env_repo) { instance_double('EnvironmentRepository', find_with_toggles: environment) }
 
-  subject { operation.call(environment_id: environment_id, account_id: account_id) } 
+  subject { operation.call(environment_id: environment_id, account_id: account_id) }
 
   let(:environment_id) { 1 }
   let(:account_id) { 1 }
@@ -16,7 +16,7 @@ RSpec.describe Environments::Operations::Show, type: :operation do
   context 'when account is not a member of project' do
     xit { expect(subject).to be_success }
   end
-  
+
   context 'when environment exists' do
     let(:environment) { Environment.new(id: 1) }
 

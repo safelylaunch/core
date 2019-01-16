@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Controllers
     module Projects
@@ -7,7 +9,7 @@ module Web
 
         expose :projects
 
-        def call(params)
+        def call(_params)
           @projects = projects_operation.call(account_id: current_account.id).value!
         end
       end

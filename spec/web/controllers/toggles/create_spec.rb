@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Toggles::Create, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:params) { { 'rack.session' => session, toggle: { name: 'Test toggle' }, project_id: 12, environment_id: 1 } }
@@ -35,7 +37,7 @@ RSpec.describe Web::Controllers::Toggles::Create, type: :action do
       {
         'rack.session' => session,
         environment_id: environment.id,
-        project_id: environment.project_id, 
+        project_id: environment.project_id,
         toggle: {
           name: 'Test toggle',
           key: 'test-toggle',

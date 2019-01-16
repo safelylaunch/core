@@ -14,7 +14,7 @@ module Projects
         find_project(project_id)
       end
 
-    private
+      private
 
       def check_access(account_id, project_id)
         project_repo.member?(account_id, project_id) ? Success(:member) : Failure(:permission_diened)

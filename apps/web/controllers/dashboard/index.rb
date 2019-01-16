@@ -10,7 +10,7 @@ module Web
 
         expose :projects
 
-        def call(params)
+        def call(_params)
           case result = operation.call(account_id: current_account.id)
           when Success
             @projects = result.value!

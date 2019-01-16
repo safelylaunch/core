@@ -12,7 +12,7 @@ module Toggles
         Success(toggle_repo.update(id, status: oposit_status(toggle)))
       end
 
-    private
+      private
 
       def find_toggle(id)
         toggle = toggle_repo.find(id)

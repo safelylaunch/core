@@ -19,6 +19,6 @@ RSpec.describe Projects::Operations::RemoveMember, type: :operation do
     before { member }
 
     it { expect(subject).to be_success }
-    it { expect{ subject }.to change { ProjectMemberRepository.new.all.count }.by(-1) }
+    it { expect { subject }.to change { ProjectMemberRepository.new.all.count }.by(-1) }
   end
 end

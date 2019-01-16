@@ -25,7 +25,7 @@ RSpec.describe EnvironmentRepository, type: :repository do
   describe '#find_with_toggles' do
     subject { repo.find_with_toggles(env_id) }
 
-    let(:environment) { Fabricate.create(:environment)  }
+    let(:environment) { Fabricate.create(:environment) }
 
     before { Fabricate.create(:toggle, environment_id: environment.id) }
 

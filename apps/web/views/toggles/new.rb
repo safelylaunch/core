@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Views
     module Toggles
@@ -25,12 +27,12 @@ module Web
 
             div do
               label :type
-              select :type, { 'Boolean' => 'boolean' }
+              select :type, 'Boolean' => 'boolean'
             end
 
             div do
               label :status
-              select :status, { 'Enable' => 'enable', 'Disable' => 'disable' }
+              select :status, 'Enable' => 'enable', 'Disable' => 'disable'
             end
 
             submit 'Create'
