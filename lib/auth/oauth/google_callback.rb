@@ -4,14 +4,15 @@ module Auth
   module Oauth
     class GoogleCallback < WebBouncer::OauthCallback
       def call(_oauth_response)
-        # account = auth_identitie_repo.find_account(uid: oauth_response['uid'], type: 'github')
+        account = Account.new(id: 1)
+        # account = auth_identitie_repo.find_account(uid: oauth_response['uid'], type: 'google')
         #
         # unless account
         #   account = account_repo.create(account_data(oauth_response))
         #   auth_identitie_repo.create(account_id: account.id, **oauth_data(oauth_response))
         # end
 
-        Success(Account.new(id: 1))
+        Success(account)
       end
 
       private
@@ -28,19 +29,17 @@ module Auth
       #   {
       #     uid:   data['uid'],
       #     token: data['credentials']['token'],
-      #     type:  'github'
+      #     type:  'google'
       #   }
       # end
       #
       # def account_data(data)
       #   {
-      #     uuid:       SecureRandom.uuid,
-      #     login:      data['info']['nickname'],
-      #     email:      data['info']['email'],
       #     name:       data['info']['name'],
-      #     bio:        data['extra']['raw_info']['bio'],
-      #     role:       'user',
-      #     avatar_url: data['info']['image']
+      #     uuid:       SecureRandom.uuid,
+      #     email:      data['info']['email'],
+      #     avatar_url: data['info']['image'],
+      #     role:       'user'
       #   }
       # end
     end
