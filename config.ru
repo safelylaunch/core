@@ -8,7 +8,7 @@ require './lib/auth/oauth_container'
 use Rack::Session::Cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
 use OmniAuth::Builder do
-  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], provider_ignores_state: true
 end
 
 use WebBouncer['middleware.oauth'], model: :account, login_redirect: '/'
