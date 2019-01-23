@@ -9,6 +9,12 @@ module Web
         def call(params)
           # TODO: check session, if account exist - redirect to dashboard
         end
+
+      private
+
+        def authenticate!
+          redirect_to('/') if authenticated?
+        end
       end
     end
   end

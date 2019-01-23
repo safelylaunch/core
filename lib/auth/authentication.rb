@@ -11,8 +11,7 @@ module Auth
     end
 
     def current_account
-      # payload = session[:account] || { id: 1 }
-      @current_account ||= Account.new(id: 1)
+      @current_account ||= Account.new(session[:account])
     end
   end
 end
