@@ -17,6 +17,13 @@ RSpec.describe Web::Controllers::Projects::New, type: :action do
     expect(action.projects).to all(be_a(Project))
   end
 
+  context 'when user not login' do
+    let(:operation) { ->(*) {} }
+    let(:session) { {} }
+
+    it { expect(subject).to redirect_to('/login') }
+  end
+
   context 'with real dependencies' do
     let(:action) { described_class.new }
     let(:params) { { 'rack.session' => { account: account } } }

@@ -29,7 +29,7 @@ RSpec.describe Web::Controllers::Projects::Members::Index, type: :action do
     it { expect(subject).to redirect_to('/projects/123') }
   end
 
-  xcontext 'when user not login' do
+  context 'when user not login' do
     let(:operation) { ->(*) {} }
     let(:session) { {} }
 

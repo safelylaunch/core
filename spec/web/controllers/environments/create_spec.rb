@@ -14,7 +14,7 @@ RSpec.describe Web::Controllers::Environments::Create, type: :action do
 
     it 'calls operation with right attributes' do
       allow(operation).to receive(:call).with(
-        account_id: 1, account_id: 1, color: '000000', name: 'stage', project_id: 123
+        account_id: 1, color: '000000', name: 'stage', project_id: 123
       )
       subject
     end
@@ -26,7 +26,7 @@ RSpec.describe Web::Controllers::Environments::Create, type: :action do
     it { expect(subject).to redirect_to('/projects/123') }
   end
 
-  xcontext 'when user not login' do
+  context 'when user not login' do
     let(:operation) { ->(*) {} }
     let(:session) { {} }
 

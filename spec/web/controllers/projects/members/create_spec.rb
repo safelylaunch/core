@@ -24,7 +24,7 @@ RSpec.describe Web::Controllers::Projects::Members::Create, type: :action do
     it { expect(subject).to redirect_to('/projects/123/members') }
   end
 
-  xcontext 'when user not login' do
+  context 'when user not login' do
     let(:operation) { ->(*) {} }
     let(:session) { {} }
 

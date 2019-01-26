@@ -34,7 +34,7 @@ RSpec.describe Web::Controllers::Projects::Show, type: :action do
     it { expect(subject).to redirect_to('/') }
   end
 
-  xcontext 'when user not login' do
+  context 'when user not login' do
     let(:operation) { ->(*) {} }
     let(:session) { {} }
 

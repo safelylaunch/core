@@ -40,7 +40,7 @@ RSpec.describe Web::Controllers::Dashboard::Index, type: :action do
     it { expect(subject).to be_success }
   end
 
-  xcontext 'when user not login' do
+  context 'when user not login' do
     let(:operation) { ->(*) {} }
     let(:session) { {} }
 
