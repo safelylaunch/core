@@ -8,12 +8,6 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
 
 version: 2
 jobs:
@@ -73,11 +67,3 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
-  deploy:
-    steps:
-      - checkout
-      - run:
-          name: Deploy Master to Heroku
-          command: |
-            cal
