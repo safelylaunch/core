@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ToggleCounterRepository < Hanami::Repository
   def increase_today_counter(toggle_id)
     transaction do
@@ -9,12 +11,12 @@ class ToggleCounterRepository < Hanami::Repository
     end
   end
 
-private
+  private
 
   def find_for_today(toggle_id)
     root
       .where(toggle_id: toggle_id)
-      .where { time::date_trunc('day', created_at).is(time::date_trunc('day', date::now)) }
+      .where { time.date_trunc('day', created_at).is(time.date_trunc('day', date.now)) }
       .map_to(ToggleCounter).one
   end
 end

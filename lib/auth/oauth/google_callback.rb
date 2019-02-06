@@ -27,19 +27,19 @@ module Auth
 
       def oauth_data(data)
         {
-          uid:   data['uid'],
+          uid: data['uid'],
           token: data['credentials']['token'],
-          type:  'google'
+          type: 'google'
         }
       end
 
       def account_data(data)
         {
-          name:       data['info']['name'],
-          uuid:       SecureRandom.uuid,
-          email:      data['info']['email'],
+          name: data['info']['name'],
+          uuid: SecureRandom.uuid,
+          email: data['info']['email'],
           avatar_url: data['info']['image'],
-          role:       'user'
+          role: 'user'
         }
       end
     end

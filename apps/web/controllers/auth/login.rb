@@ -10,7 +10,7 @@ module Web
           # TODO: check session, if account exist - redirect to dashboard
         end
 
-      private
+        private
 
         def authenticate!
           redirect_to('/') if authenticated?

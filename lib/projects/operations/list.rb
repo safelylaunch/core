@@ -6,7 +6,7 @@ module Projects
       include Import[project_repo: 'repositories.project']
 
       def call(account_id:)
-        Success(project_repo.all_for_member(account_id))
+        Success(project_repo.all_for_member(account_id)) # => Success(bool)
       end
     end
   end

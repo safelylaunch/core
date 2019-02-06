@@ -18,4 +18,3 @@ RSpec.describe Web::Controllers::Auth::Login, type: :action do
     it { expect(subject[0]).to eq 200 }
   end
 end
-

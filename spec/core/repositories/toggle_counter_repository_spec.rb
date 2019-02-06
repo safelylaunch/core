@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe ToggleCounterRepository, type: :repository do
   let(:repo) { described_class.new }
   let(:toggle) { Fabricate.create(:toggle) }
