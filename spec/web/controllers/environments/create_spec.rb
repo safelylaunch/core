@@ -13,7 +13,7 @@ RSpec.describe Web::Controllers::Environments::Create, type: :action do
     it { expect(subject).to redirect_to('/projects/123') }
 
     it 'calls operation with right attributes' do
-      allow(operation).to receive(:call).with(
+      expect(operation).to receive(:call).with(
         account_id: 1, color: '000000', name: 'stage', project_id: 123
       )
       subject

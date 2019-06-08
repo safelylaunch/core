@@ -20,7 +20,7 @@ module Web
           when Success
             @projects = projects_operation.call(account_id: current_account.id).value!
             @environment = result.value!
-          when Failure
+          when Failure { |message, _payload| message == :not_found }
             redirect_to routes.root_path
           end
         end
