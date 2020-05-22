@@ -242,7 +242,7 @@ GEM
     powerpack (0.1.2)
     procto (0.0.3)
     public_suffix (3.0.3)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-test (1.1.0)
@@ -364,7 +364,7 @@ DEPENDENCIES
   mutant-rspec
   omniauth-google-oauth2
   pg
-  puma (~> 4.3.3)
+  puma (~> 4.3.5)
   rake
   relative_time
   rspec
